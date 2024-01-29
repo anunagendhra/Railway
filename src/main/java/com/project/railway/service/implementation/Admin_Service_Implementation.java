@@ -188,9 +188,8 @@ public class Admin_Service_Implementation implements Admin_Service {
 
 		if (!jwtUtil.isValidToken(token)) {
 			structure.setMessage("Token Expired, Please Login Again");
-			structure.setStatus(HttpStatus.UNAUTHORIZED.value());
-			
-			return new ResponseEntity<>(structure, HttpStatus.UNAUTHORIZED);
+			structure.setStatus(HttpStatus.FORBIDDEN.value());
+			return new ResponseEntity<>(structure, HttpStatus.FORBIDDEN);
 		} else {
 			List<Station> existingStations = train.getStations();
 			if (existingStations == null) {
